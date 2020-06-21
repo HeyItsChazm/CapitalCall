@@ -1,2 +1,7 @@
-# CapitalCall
-Repository for CapitalCall application.
+# Capital Call
+
+Server Dependencies:
+  - Pipenv
+  - Python3
+  - Node.js (for npm)
+  - bootstrap, reactstrap, axios (from npm)

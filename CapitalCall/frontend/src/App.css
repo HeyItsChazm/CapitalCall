@@ -1,0 +1,57 @@
+.Content {
+  background-color: #FFFFFF;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.Header {
+  position: relative;
+  right: 0;
+  top: 0;
+  left: 0;
+}
+
+.HeaderContainer {
+  display: inline-grid;
+  width: 100%;
+}
+
+.Logo {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  grid-column: 1
+}
+
+.NavigationTabs {
+  grid-column: 2;
+  align-self: center;
+  text-align: right;
+}
+
+.Body {
+  background-color: #FFFFFF;
+  height: 100%;
+  width: 100%;
+}
+
+.BodyContainer {
+  display: inline-grid;
+  height: 100%;
+  width: 100%;
+}
+
+.WelcomeButton {
+  display: block;
+  background-color: #4472C4;
+  color: #FFFFFF;
+  margin: 200px auto;
+  height: 200px;
+  width: 300px;
+  font-size: 30px;
+  font-style: bold;
+}
+.WelcomeButton:hover {
+  background-color: #6996e6
+}
