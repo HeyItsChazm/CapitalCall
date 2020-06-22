@@ -1,0 +1,32 @@
+
+.Welcome {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Welcome-button {
+  height: 200px;
+  width: 320px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #4272c4;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 10px rgba(0, 0, 150, 0.5);
+  -moz-box-shadow: 0 10px 10px rgba(0, 0, 150, 0.5);
+  box-shadow: 0 10px 10px rgba(0, 0, 150, 0.5);
+}
+
+.Welcome-button:hover {
+  background-color: #517cc8;
+  -webkit-box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
+  -moz-box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
+  box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
+}

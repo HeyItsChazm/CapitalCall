@@ -1,57 +1,70 @@
-.Content {
-  background-color: #FFFFFF;
+.App {
   height: 100%;
   width: 100%;
+  overflow: auto;
   position: absolute;
 }
 
-.Header {
-  position: relative;
-  right: 0;
-  top: 0;
+.App-logo {
+  height: 100px;
+}
+
+.App-header, .App-footer, .App-content {
+  position: absolute;
   left: 0;
-}
-
-.HeaderContainer {
-  display: inline-grid;
   width: 100%;
 }
 
-.Logo {
+.App-header, .App-footer {
+  overflow: hidden;
+  background: #FEFEFE;
+  z-index: 10;
+}
+
+.App-header {
+  top: 0;
+  -webkit-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
+  height: 100px;
+}
+
+.App-footer {
+  bottom: 0;
+  -webkit-box-shadow: 0 -7px 8px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 -7px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -7px 8px rgba(0, 0, 0, 0.12);
+  height: 50px;
+}
+
+.App-content {
+  top: 100px;
+  bottom: 50px;
+  overflow: auto;
+  background: #FFFFFF;
+}
+
+.App-info {
+  display: grid;
+  align-items: center;
+  height: 100%;
+  grid-template-columns: repeat(4, 25%);
+}
+
+.App-info-author {
+  grid-column: 1;
   margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  grid-column: 1
+  text-align: left;
 }
 
-.NavigationTabs {
-  grid-column: 2;
-  align-self: center;
+.App-info-title {
+  grid-column-start: 2;
+  grid-column-end: span 2;
+  text-align: center;
+}
+
+.App-info-time {
+  grid-column: 4;
+  margin-right: 20px;
   text-align: right;
-}
-
-.Body {
-  background-color: #FFFFFF;
-  height: 100%;
-  width: 100%;
-}
-
-.BodyContainer {
-  display: inline-grid;
-  height: 100%;
-  width: 100%;
-}
-
-.WelcomeButton {
-  display: block;
-  background-color: #4472C4;
-  color: #FFFFFF;
-  margin: 200px auto;
-  height: 200px;
-  width: 300px;
-  font-size: 30px;
-  font-style: bold;
-}
-.WelcomeButton:hover {
-  background-color: #6996e6
 }

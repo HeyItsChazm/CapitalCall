@@ -1,30 +1,29 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import logo from './logo.svg';
+import { Link } from 'react-router-dom'
 import './App.css';
-import logo from './logo.png';
+import PageLoader from './components/PageLoader'
 
-import WelcomePage from './components/Welcome';
-import DashboardPage from './components/Dashboard';
-import NewCallPage from './components/NewCall';
-import ErrorPage from './components/Error';
-import Navigation from './components/Navigation'
-
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-          <Navigation />
-          <switch>
-           <Route path="/" component={WelcomePage} exact />
-           <Route path="/dashboard" component={DashboardPage} />
-           <Route path="/newcall" component={NewCallPage} />
-           <Route component={ErrorPage}/>
-          </switch>
+function App() {
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <Link to='/'>
+          <img className='App-logo' src={logo} alt='Validus Risk Management' />
+        </Link>
+      </header>
+      <main className='App-content'>
+        <PageLoader />
+      </main>
+      <footer className='App-footer'>
+        <div className='App-info'>
+          <div className='App-info-author'>Charles Hodgson</div>
+          <div className='App-info-title'>Case Study</div>
+          <div className='App-info-time'>Time</div>
         </div>
-      </BrowserRouter>
-    );
-  }
+      </footer>
+    </div>
+  );
 }
+
 export default App;
