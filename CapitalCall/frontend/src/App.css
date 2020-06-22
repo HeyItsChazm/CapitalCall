@@ -6,7 +6,10 @@
 }
 
 .App-logo {
-  height: 100px;
+  grid-column: 1;
+  height: 70px;
+  margin-top: 17px;
+  margin-left: 50px;
 }
 
 .App-header, .App-footer, .App-content {
@@ -27,6 +30,10 @@
   -moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
   box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
   height: 100px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 30% 40% 30%;
+  font-size: 20px;
 }
 
 .App-footer {
@@ -48,7 +55,7 @@
   display: grid;
   align-items: center;
   height: 100%;
-  grid-template-columns: repeat(4, 25%);
+  grid-template-columns: 25% 50% 25%;
 }
 
 .App-info-author {
@@ -59,12 +66,53 @@
 
 .App-info-title {
   grid-column-start: 2;
-  grid-column-end: span 2;
   text-align: center;
 }
 
 .App-info-time {
-  grid-column: 4;
+  grid-column: 3;
   margin-right: 20px;
   text-align: right;
 }
+
+.App-name-container {
+  grid-column: 2;
+  padding-left: 200px;
+  padding-right: 200px;
+  text-align: center;
+}
+
+.App-name {
+  background-color: #DDEBF7;
+}
+
+.App-navigation {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  padding-left: 150px;
+  padding-right: 150px;
+  text-align: center;
+}
+
+ .Nav-dashboard, .Nav-newcall {
+   padding: 10px;
+   border: 1px solid #FFFFFF;
+ }
+
+ .Nav-dashboard {
+   grid-column: 1;
+ }
+
+ .Nav-newcall {
+   grid-column: 2;
+ }
+
+ .Nav-dashboard:hover, .Nav-newcall:hover {
+   border-top: 1px solid #FFFFFF;
+   border-left: 1px solid #FFFFFF;
+   border-right: 1px solid #FFFFFF;
+   border-bottom: 1px solid #4272c4;
+   color: #4272c4;
+   font-weight: bold;
+ }
