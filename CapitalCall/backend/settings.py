@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'djmoney',
     'rest_framework',
     "corsheaders",
+    'sslserver',
     # Applications
     'capitalcall',
 ]

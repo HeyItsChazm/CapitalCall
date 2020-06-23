@@ -10,6 +10,7 @@ django = "*"
 django-money = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+django-sslserver = "*"
 
 [requires]
 python_version = "3.8"
