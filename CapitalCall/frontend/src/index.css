@@ -15,3 +15,8 @@ a {
 th {
   font-weight: none;
 }
+
+td {
+  padding: 2px;
+  margin: 2px;
+}

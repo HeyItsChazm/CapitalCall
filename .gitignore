@@ -136,4 +136,4 @@ dmypy.json
 /.idea/dictionaries/Charl.xml
 /.idea/CapitalCall.iml
 /.idea/.gitignore
-/CapitalCall/capitalcall/migrations/0001_initial.py
+/CapitalCall/capitalcall/migrations/*
