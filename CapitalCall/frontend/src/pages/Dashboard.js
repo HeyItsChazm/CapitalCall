@@ -4,16 +4,7 @@ import NavigationHeader from '../components/NavigationHeader';
 import Table from '../components/Table';
 import axios from 'axios';
 
-// const data = [
-//   {
-//     'Date': '31/01/2018',
-//     'Call #': 1,
-//     'Fund 1': 9500000.00,
-//     'Fund 2': '-',
-//     'Fund 3': null,
-//     'Fund 4': null,
-//   }
-// ]
+
 class DashboardPage extends Component {
   constructor(props) {
     super(props)

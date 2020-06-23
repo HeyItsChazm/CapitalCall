@@ -3,6 +3,7 @@
   width: 100%;
   overflow: auto;
   position: absolute;
+  min-width: 800px;
 }
 
 .App-logo {
@@ -10,6 +11,11 @@
   height: 70px;
   margin-top: 17px;
   margin-left: 50px;
+}
+
+.App-logo-container {
+  min-width: 330px;
+  min-height: 87px;
 }
 
 .App-header, .App-footer, .App-content {
@@ -62,6 +68,7 @@
   grid-column: 1;
   margin-left: 20px;
   text-align: left;
+  min-width: 170px;
 }
 
 .App-info-title {
@@ -73,13 +80,15 @@
   grid-column: 3;
   margin-right: 20px;
   text-align: right;
+  min-width: 170px;
 }
 
 .App-name-container {
   grid-column: 2;
-  padding-left: 200px;
-  padding-right: 200px;
+  margin-left: 200px;
+  margin-right: 200px;
   text-align: center;
+  min-width: 200px;
 }
 
 .App-name {
@@ -93,6 +102,7 @@
   padding-left: 150px;
   padding-right: 150px;
   text-align: center;
+  min-width: 200px;
 }
 
  .Nav-dashboard, .Nav-newcall {

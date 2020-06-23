@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import WelcomePage from '../pages/Welcome';
 import DashboardPage from '../pages/Dashboard';
 import NewCallPage from '../pages/NewCall';
-import ErrorPage from '../pages/Error'
+import ErrorPage from '../pages/Error';
 
 
 const PageLoader = () => {

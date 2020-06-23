@@ -10,7 +10,7 @@ class Table extends Component {
     return <tr>{row}</tr>
   }
   render () {
-    if (this.props.data.length === 0){
+    if (this.props.data == null || this.props.data.length === 0) {
       return (
         <table>
           <tr>
@@ -18,7 +18,7 @@ class Table extends Component {
           </tr>
         </table>
       )
-    }
+    };
     const headerRow = Object.keys(...this.props.data);
     return (
       <table>
