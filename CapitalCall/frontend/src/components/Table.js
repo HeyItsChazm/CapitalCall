@@ -10,6 +10,15 @@ class Table extends Component {
     return <tr>{row}</tr>
   }
   render () {
+    if (this.props.data.length === 0){
+      return (
+        <table>
+          <tr>
+            <th key={"NA"}>No Data Available</th>
+          </tr>
+        </table>
+      )
+    }
     const headerRow = Object.keys(...this.props.data);
     return (
       <table>

@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../App.css';
 
-const ErrorPage = () => {
-  return (
-    <div className='Error'>
-      <p>Error 404: Page not found.</p>
-    </div>
-  )
+
+class ErrorPage extends Component {
+  render() {
+    return (
+      <div className='Error'>
+        <p>{this.props.error}</p>
+      </div>
+    )
+  }
 }
+
 export default ErrorPage;

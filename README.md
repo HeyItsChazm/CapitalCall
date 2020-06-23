@@ -13,6 +13,7 @@ Pipenv Packages (can be installed with 'pipenv install' in the 'CapitalCall/' di
 
 NPM Required Packages (can be installed with 'npm install' in the 'CapitalCall/CapitalCall/frontend' directory.):
   - react-router-dom
+  - axios
 
 
 To start the Frontend server:

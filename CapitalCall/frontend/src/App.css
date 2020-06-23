@@ -98,6 +98,7 @@
  .Nav-dashboard, .Nav-newcall {
    padding: 10px;
    border: 1px solid #FFFFFF;
+   color: #4272c4;
  }
 
  .Nav-dashboard {
@@ -113,6 +114,5 @@
    border-left: 1px solid #FFFFFF;
    border-right: 1px solid #FFFFFF;
    border-bottom: 1px solid #4272c4;
-   color: #4272c4;
    font-weight: bold;
  }
