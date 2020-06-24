@@ -1,0 +1,54 @@
+.Newcall {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30% 70%;
+  height: 100%;
+}
+
+.Newcall-input {
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: 4;
+  margin: 30px;
+  height: 200px;
+}
+
+.Newcall-input-date, .Newcall-input-rules, .Newcall-input-name, .Newcall-input-capital {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  text-align: right;
+  margin: 10px;
+  align-items: center;
+}
+
+.Newcall-input-date {
+  grid-row: 1;
+}
+
+.Newcall-input-rules {
+  grid-row: 2;
+}
+
+.Newcall-input-name {
+  grid-row: 3;
+}
+
+.Newcall-input-capital {
+  grid-row: 4;
+}
+
+.Newcall-input-date-label, .NewCall-input-rules-label, .NewCall-input-name-label, .NewCall-input-capital-label {
+  grid-column: 1;
+  text-align: right;
+}
+
+.Newcall-input-date-input, .Newcall-input-rules-input, .Newcall-input-name-input, .Newcall-input-capital-input {
+  grid-column: 2;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.Newcall-preview-table{
+  grid-column: 2;
+  margin: 30px;
+}
