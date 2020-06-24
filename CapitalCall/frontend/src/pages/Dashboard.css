@@ -3,13 +3,3 @@
   margin-left: 100px;
   margin-right: 100px;
 }
-
-table {
-  border-collapse: collapse;
-  width: 50%;
-  text-align: center;
-}
-
-th {
-  border-bottom: 1px solid #4272C4;
-}

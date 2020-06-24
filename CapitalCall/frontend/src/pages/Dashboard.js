@@ -29,10 +29,6 @@ class DashboardPage extends Component {
       .then(response => this.setState({ calls: response.data }))
       .catch(err => console.log(err));
     axios
-      .get("api/commitments")
-      .then(response => this.setState({ commitments: response.data }))
-      .catch(err => console.log(err));
-    axios
       .get("api/fundinvestments")
       .then(response => this.setState({ fundInvestments: response.data }))
       .catch(err => console.log(err));
@@ -74,7 +70,6 @@ class DashboardPage extends Component {
           data[funds[key]] = null;
         };
       };
-
       overview[i] = data
     };
     return (
