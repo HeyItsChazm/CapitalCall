@@ -33,10 +33,22 @@ class DashboardPage extends Component {
       .then(response => this.setState({ fundInvestments: response.data }))
       .catch(err => console.log(err));
   }
+  formatCurrency = (number, decimals=4, symbol="$") => {
+    // Format numeric values to currency
+    if (number > 0) {
+      // Append "$" and take the first 4 decimal places.
+      return ( symbol + number.toFixed(decimals) )
+    } else if (number < 0) {
+      return ( "-" + symbol + Math.abs(number.toFixed(decimals)) )
+    } else {
+      // Set the value to null for table formatting.
+      return ( null )
+    };
+  }
   renderOverview = () => {
     let overview = [];
     let funds = {};
-    // Setup overview data template
+    // Setup overview data template (in column order)
     let data_template = {
       "Date": null,
       "Call #": null,
@@ -60,34 +72,28 @@ class DashboardPage extends Component {
             data[funds[fund_investment.fund_id]] += +fund_investment.investment_amount;
           };
       };
-      // Check each key for a positive (more than 0) value.
+      // Format fund amount keys
       for (var key in funds) {
-        if (data[funds[key]] > 0) {
-          // Append "$" and take the first 4 decimal places.
-          data[funds[key]] = "$" + data[funds[key]].toFixed(4);
-        } else {
-          // Set the value to null for table formatting.
-          data[funds[key]] = null;
-        };
+        data[funds[key]] = this.formatCurrency(data[funds[key]])
       };
       overview[i] = data
     };
     return (
-      <div className='Dashboard-page'>
-        <NavigationHeader/>
-        <main className='App-content'>
-          <div className='Dashboard'>
-            <div className='Dashboard-table'>
-              <Table data={overview} />
-            </div>
-          </div>
-        </main>
+      <div className='Dashboard-table'>
+        <Table data={overview} />
       </div>
     )
   }
   render() {
     return (
-      this.renderOverview()
+      <div className='Dashboard-page'>
+        <NavigationHeader/>
+        <main className='App-content'>
+          <div className='Dashboard'>
+            {this.renderOverview()}
+          </div>
+        </main>
+      </div>
     )
   }
 }

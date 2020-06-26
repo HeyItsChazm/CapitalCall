@@ -1,20 +1,22 @@
 .Newcall {
   display: grid;
   width: 100%;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: minmax(400px, 25%) 75%;
   height: 100%;
 }
 
 .Newcall-input {
   grid-column: 1;
   display: grid;
-  grid-template-rows: 4;
-  margin: 30px;
-  height: 200px;
+  grid-template-rows: 5;
+  margin-top: 30px;
+  height: 300px;
+  min-height: 275px;
 }
 
 .Newcall-input-date, .Newcall-input-rules, .Newcall-input-name, .Newcall-input-capital {
   display: grid;
+  margin: 5px;
   grid-template-columns: 60% 40%;
   text-align: right;
   margin: 10px;
@@ -37,12 +39,59 @@
   grid-row: 4;
 }
 
-.Newcall-input-date-label, .NewCall-input-rules-label, .NewCall-input-name-label, .NewCall-input-capital-label {
+.Newcall-confirm {
+  grid-row: 5;
+  margin: 5px;
+  margin-top: 25px;
+  align-items: center;
+  text-align: center;
+}
+
+.Newcall-confirm-button {
+  height: 65px;
+  width: 300px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #4272c4;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 10px rgba(0, 0, 150, 0.5);
+  -moz-box-shadow: 0 10px 10px rgba(0, 0, 150, 0.5);
+  box-shadow: 0 10px 10px rgba(0, 0, 150, 0.5);
+}
+
+.Newcall-confirm-button:hover {
+  background-color: #517cc8;
+  -webkit-box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
+  -moz-box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
+  box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
+}
+
+.Newcall-confirm-button:active {
+  background-color: #517cc8;
+  -webkit-box-shadow: 0 6px 10px rgba(0, 0, 100, 0.5);
+  -moz-box-shadow: 0 6px 10px rgba(0, 0, 100, 0.5);
+  box-shadow: 0 6px 10px rgba(0, 0, 100, 0.5);
+  transform: translateY(4px);
+}
+
+.Newcall-confirm-button:focus {
+  outline: 0;
+}
+
+.Newcall-input-date-label, .NewCall-input-rules-label, .NewCall-input-name-label,
+.NewCall-input-capital-label {
   grid-column: 1;
   text-align: right;
 }
 
-.Newcall-input-date-input, .Newcall-input-rules-input, .Newcall-input-name-input, .Newcall-input-capital-input {
+.Newcall-input-date-input, .Newcall-input-rules-input, .Newcall-input-name-input,
+.Newcall-input-capital-input {
   grid-column: 2;
   text-align: left;
   margin-left: 10px;
@@ -51,4 +100,33 @@
 .Newcall-preview-table{
   grid-column: 2;
   margin: 30px;
+  table-layout: fixed;
+}
+
+.row_Commitment_ID, .row_Fund_ID, .row_Date, .row_Fund, .row_Commited_Amounts,
+.row_Undrawn_Capital_Commitment_before_Current_Drawdown_Notice, .row_Total_Drawdown_Notice,
+.row_Undrawn_Capital_Commitment_after_Current_Drawdown_Notice {
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+}
+
+.row_Commitment_ID, .row_Fund_ID, .row_Date, .row_Fund {
+  width: 10%;
+}
+
+
+.row_Commitment_ID, .row_Fund_ID, .row_Date, .row_Fund {
+  text-align: center;
+}
+
+.row_Commited_Amounts, .row_Undrawn_Capital_Commitment_before_Current_Drawdown_Notice,
+.row_Total_Drawdown_Notice, .row_Undrawn_Capital_Commitment_after_Current_Drawdown_Notice {
+  width: 15%;
+  text-align: right;
+}
+
+.row_Total_Drawdown_Notice, .row_Undrawn_Capital_Commitment_after_Current_Drawdown_Notice {
+  background-color: #fce4d6;
 }

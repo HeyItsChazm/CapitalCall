@@ -23,13 +23,18 @@ class Fund(models.Model):
 
 class Call(models.Model):
     id = models.BigAutoField(primary_key=True)
-    call_id = models.PositiveIntegerField()
+    call_id = models.PositiveIntegerField(unique=True)
     date = models.DateField(default=timezone.now)
     investment_name = models.CharField(max_length=120)
     capital_requirement = MoneyField(**money_field_settings)
 
     def __str__(self):
         return f"Call #{self.id}"
+
+    def save(self, *args, **kwargs):
+        if not self.call_id:
+            self.call_id = self.id
+        super(Call, self).save(*args, **kwargs)
 
 
 class Commitment(models.Model):

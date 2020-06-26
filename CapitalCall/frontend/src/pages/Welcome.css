@@ -30,3 +30,15 @@
   -moz-box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
   box-shadow: 0 10px 10px rgba(0, 0, 100, 0.5);
 }
+
+.Welcome-button:active {
+  background-color: #517cc8;
+  -webkit-box-shadow: 0 6px 10px rgba(0, 0, 100, 0.5);
+  -moz-box-shadow: 0 6px 10px rgba(0, 0, 100, 0.5);
+  box-shadow: 0 6px 10px rgba(0, 0, 100, 0.5);
+  transform: translateY(4px);
+}
+
+.Welcome-button:focus {
+  outline: 0;
+}

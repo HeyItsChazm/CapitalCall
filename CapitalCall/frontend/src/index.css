@@ -20,11 +20,8 @@ td {
 
 table {
   border-collapse: collapse;
-  width: 50%;
-  text-align: center;
 }
 
 th {
   border-bottom: 1px solid #4272C4;
-  font-weight: none;
 }

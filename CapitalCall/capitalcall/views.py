@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from .serialisers import FundSerialiser, CallSerialiser, CommitmentSerialiser, FundInvestmentSerialiser
 from .models import Fund, Call, Commitment, FundInvestment
