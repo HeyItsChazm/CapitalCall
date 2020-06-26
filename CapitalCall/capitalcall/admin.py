@@ -7,7 +7,7 @@ class FundAdmin(admin.ModelAdmin):
 
 
 class CallAdmin(admin.ModelAdmin):
-    list_display = ('id', 'call_id', 'date', 'investment_name', 'capital_requirement')
+    list_display = ('id', 'date', 'investment_name', 'capital_requirement')
 
 
 class CommitmentAdmin(admin.ModelAdmin):

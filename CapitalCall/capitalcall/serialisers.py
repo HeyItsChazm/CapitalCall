@@ -11,7 +11,7 @@ class FundSerialiser(serializers.ModelSerializer):
 class CallSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Call
-        fields = ('id', 'call_id', 'date', 'investment_name', 'capital_requirement')
+        fields = ('id', 'date', 'investment_name', 'capital_requirement')
 
 
 class CommitmentSerialiser(serializers.ModelSerializer):

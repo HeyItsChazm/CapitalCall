@@ -230,52 +230,40 @@ class NewCallPage extends Component {
     let investment = this.getInputCapital();
     if ( investment === null ) { return }
     let call_data = {
-      date: date,
+      date: date.toISOString().split('T')[0],
       investment_name: name,
       capital_requirement: investment,
     }
-    console.log("CALLS BEFORE");
-    console.log(this.state.calls);
-    console.log("-----------------");
     backendApi.postApiCalls(call_data);
-    console.log("CALLS AFTER");
-    console.log(this.state.calls);
-    console.log("-----------------");
-    // Refresh the calls list.
-    backendApi.getApiCalls().then((calls) => {
-      this.setState({ calls: calls, })
-    });
-    console.log(this.state.calls);
     // Next highest id in calls.
     let mostRecentID = Math.max.apply(Math, this.state.calls.map(
       call => { return call.id }
-    ));
-    console.log("INVESTMENT BEFORE");
-    console.log(this.state.fundInvestments);
-    console.log("-----------------");
+    )) + 1;
     // Save Fund Investments
-    let fundInvestmentData = [];
     for (var index in this.data) {
       let row = this.data[index];
       let investment = row[headerTotalDrawdown];
       if (investment > 0) {
-        fundInvestmentData.push({
+        backendApi.postApiFundInvestments({
           call_id: mostRecentID,
           commitment_id: row[headerCommitmentId],
           fund_id: row[headerFundId],
           investment_amount: row[headerTotalDrawdown],
         });
-        console.log(fundInvestmentData);
-        backendApi.postApiFundInvestments(fundInvestmentData);
       };
     }
+    // Refresh the calls list.
+    backendApi.getApiCalls().then((calls) => {
+      this.setState({ calls: calls, })
+    });
     // Refresh the fund investments list.
     backendApi.getApiFundInvestments().then((fundInvestments) => {
       this.setState({ fundInvestments: fundInvestments, })
     });
-    console.log("INVESTMENT AFTER");
-    console.log(this.state.fundInvestments);
-    console.log("----------------");
+    alert("Call #" + mostRecentID + "has been created.");
+    this.setInput(inputFieldDate, "");
+    this.setInput(inputFieldName, "");
+    this.setInput(inputFieldCapital, "");
   }
   renderPreview = () => {
     return (

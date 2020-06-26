@@ -65,10 +65,10 @@ class DashboardPage extends Component {
       let call = this.state.calls[i];
       let data = {...data_template};
       data["Date"] = call.date;
-      data["Call #"] = call.call_id;
+      data["Call #"] = call.id;
       for (let j = 0; j < this.state.fundInvestments.length; j++) {
           let fund_investment = this.state.fundInvestments[j];
-          if (call.call_id === fund_investment.call_id) {
+          if (call.id === fund_investment.call_id) {
             data[funds[fund_investment.fund_id]] += +fund_investment.investment_amount;
           };
       };
