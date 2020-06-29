@@ -28,18 +28,6 @@ const headerUndrawnCapitalBefore = "Undrawn Capital Commitment before Current Dr
 const headerTotalDrawdown = "Total Drawdown Notice";
 const headerUndrawnCapitalAfter = "Undrawn Capital Commitment after Current Drawdown Notice";
 
-// Preview table data template
-let previewDataTemplate = {
-  "Commitment ID": null,
-  "Fund ID": null,
-  "Date": null,
-  "Fund": null,
-  "Commited Amounts": null,
-  "Undrawn Capital Commitment before Current Drawdown Notice": null,
-  "Total Drawdown Notice": null,
-  "Undrawn Capital Commitment after Current Drawdown Notice": null,
-};
-
 // Add rule options here
 const Rules = () => {
   return (
@@ -167,7 +155,6 @@ class NewCallPage extends Component {
   }
   getPreview() {
     this.data = [];
-    // Check connection was established.
     if (this.state.commitments === undefined || this.state.funds === undefined) {
       return null;
     }
@@ -182,15 +169,9 @@ class NewCallPage extends Component {
     // Summarise preview data
     for (let i = 0; i < this.state.commitments.length; i++) {
       let commitment = this.state.commitments[i];
-      let data = {...previewDataTemplate};
+      let data = {};
 
       let undrawn_capital_before = parseFloat(commitment.amount);
-      // Assign values already prepared to data
-      data[headerCommitmentId] = parseInt(commitment.id);
-      data[headerFundId] = parseInt(commitment.fund_id);
-      data[headerDate] = new Date(commitment.date);
-      data[headerFundName] = fundsById[commitment.fund_id];
-      data[headerCommitedAmounts] = parseFloat(commitment.amount);
       // Calculate undrawn capital before
       if (commitment.id in committedInvestments) {
         undrawn_capital_before -= committedInvestments[commitment.id];
@@ -201,6 +182,11 @@ class NewCallPage extends Component {
       // Calculate undrawn capital after
       let undrawn_capital_after = undrawn_capital_before - total_drawdown;
       // Assign calculated values to data
+      data[headerCommitmentId] = parseInt(commitment.id);
+      data[headerFundId] = parseInt(commitment.fund_id);
+      data[headerDate] = new Date(commitment.date);
+      data[headerFundName] = fundsById[commitment.fund_id];
+      data[headerCommitedAmounts] = parseFloat(commitment.amount);
       data[headerUndrawnCapitalBefore] = undrawn_capital_before;
       data[headerTotalDrawdown] = total_drawdown;
       data[headerUndrawnCapitalAfter] = undrawn_capital_after;
@@ -220,7 +206,8 @@ class NewCallPage extends Component {
     }
     this.sufficientCapital = remainingCapital === 0;
     this.maxInvestment= maxInvestment;
-    return preview;
+    this.data.sort((a, b) => b.date - a.data)
+    return preview.sort((a, b) => b.date - a.data);
   }
   saveCall() {
     let date = this.getInputDate();
@@ -260,7 +247,7 @@ class NewCallPage extends Component {
     backendApi.getApiFundInvestments().then((fundInvestments) => {
       this.setState({ fundInvestments: fundInvestments, })
     });
-    alert("Call #" + mostRecentID + "has been created.");
+    alert("Call #" + mostRecentID + " has been created.");
     this.setInput(inputFieldDate, "");
     this.setInput(inputFieldName, "");
     this.setInput(inputFieldCapital, "");
