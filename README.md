@@ -60,4 +60,7 @@ The preview will then calculate, according to the 'Capital Required for Investme
 
 Once you are happy with your inputs and the preview results, click the blue 'Confirm' button. This will perform some background checks to validate the data, before submitting it to the database.
 Any issues will be raised in the form of an alert box at the top of the web browser. Please correct these issues (if present) and click confirm again to resubmit.
+
+db_blank.sqlite3 has been included to provide an easy way of resetting the project without using the django admin interface.
+Just copy and paste the file in the same directory and rename it to 'db.sqlite3'.
  
