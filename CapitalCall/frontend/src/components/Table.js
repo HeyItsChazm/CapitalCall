@@ -70,11 +70,16 @@ class Table extends Component {
     )
   }
   render () {
-    if (this.props.data == null || this.props.data.length === 0) {
-      return this.parseNullTable()
+    try {
+      if (!(this.props.data === null || this.props.data === undefined || this.props.data.length === 0)){
+        const headerRow = Object.keys(...this.props.data);
+        return this.parseTable(this.props.data, headerRow);
+      };
+      return this.parseNullTable();
+    } catch(err) {
+      console.log(err);
+      return this.parseNullTable();
     };
-    const headerRow = Object.keys(...this.props.data);
-    return this.parseTable(this.props.data, headerRow);
   }
 }
 

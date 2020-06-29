@@ -153,24 +153,27 @@ class NewCallPage extends Component {
     };
     return investmentsByCommitmentID;
   }
+  getFundNamesById = () => {
+    return this.state.funds.reduce(
+      (data, fund) => ({...data, [fund.id]: fund.name }), {}
+    )
+  }
   getPreview() {
-    this.data = [];
     if (this.state.commitments === undefined || this.state.funds === undefined) {
       return null;
     }
+    let rawData = [];
     let preview = [];
     let maxInvestment = 0;
     let committedInvestments = this.getInvestmentsByCommitmentID();
     let capitalRequired = this.getInputCapital(false) ?? 0;
     let remainingCapital = capitalRequired;
-    let fundsById = this.state.funds.reduce(
-      (data, fund) => ({...data, [fund.id]: fund.name }), {}
-    )
+    let fundNamesById = this.getFundNamesById();
+    this.state.commitments.sort((a, b) => new Date(a.date) - new Date(b.date));
     // Summarise preview data
     for (let i = 0; i < this.state.commitments.length; i++) {
       let commitment = this.state.commitments[i];
       let data = {};
-
       let undrawn_capital_before = parseFloat(commitment.amount);
       // Calculate undrawn capital before
       if (commitment.id in committedInvestments) {
@@ -185,11 +188,12 @@ class NewCallPage extends Component {
       data[headerCommitmentId] = parseInt(commitment.id);
       data[headerFundId] = parseInt(commitment.fund_id);
       data[headerDate] = new Date(commitment.date);
-      data[headerFundName] = fundsById[commitment.fund_id];
+      data[headerFundName] = fundNamesById[commitment.fund_id];
       data[headerCommitedAmounts] = parseFloat(commitment.amount);
       data[headerUndrawnCapitalBefore] = undrawn_capital_before;
       data[headerTotalDrawdown] = total_drawdown;
       data[headerUndrawnCapitalAfter] = undrawn_capital_after;
+      // Format the data for previewing
       let previewData = {...data};
       previewData[headerDate] = data[headerDate].toISOString().split('T')[0];
       previewData[headerCommitedAmounts] = formatter.formatCurrency(
@@ -200,14 +204,15 @@ class NewCallPage extends Component {
         data[headerTotalDrawdown]);
       previewData[headerUndrawnCapitalAfter] = formatter.formatCurrency(
         data[headerUndrawnCapitalAfter]);
-      this.data.push(data);
+      // Push the data to the arrays
+      rawData.push(data);
       preview.push(previewData);
       maxInvestment += +undrawn_capital_before;
     }
+    this.data = rawData;
     this.sufficientCapital = remainingCapital === 0;
     this.maxInvestment= maxInvestment;
-    this.data.sort((a, b) => b.date - a.data)
-    return preview.sort((a, b) => b.date - a.data);
+    return preview
   }
   saveCall() {
     let date = this.getInputDate();
@@ -252,6 +257,35 @@ class NewCallPage extends Component {
     this.setInput(inputFieldName, "");
     this.setInput(inputFieldCapital, "");
   }
+  getFundDrawdown = () => {
+    let fundsByDrawdown = {};
+    let fundNamesById = this.getFundNamesById();
+    for (var index in this.data) {
+      let row = this.data[index];
+      let investment = row[headerTotalDrawdown];
+      let fundId = row[headerFundId];
+      let fundName = fundNamesById[fundId];
+      if (!(fundId in fundsByDrawdown)) {
+        fundsByDrawdown[fundId] = {
+          [headerFundName]: fundName,
+          [headerTotalDrawdown]: 0
+        }
+      }
+      fundsByDrawdown[fundId][headerTotalDrawdown] += investment;
+    }
+    for (let id in fundsByDrawdown) {
+      let currency = formatter.formatCurrency(fundsByDrawdown[id][headerTotalDrawdown])
+      fundsByDrawdown[id][headerTotalDrawdown] = currency
+    }
+    return Object.values(fundsByDrawdown) ?? [];
+  }
+  renderFundDrawdown = () => {
+    return (
+      <div className='Newcall-fund-drawdown-table'>
+        <Table data={this.getFundDrawdown()} />
+      </div>
+    )
+  }
   renderPreview = () => {
     return (
       <div className='Newcall-preview-table'>
@@ -282,6 +316,7 @@ class NewCallPage extends Component {
               <div className="Newcall-confirm">
                 <button className="Newcall-confirm-button" onClick={this.saveCall}>Confirm</button>
               </div>
+              {this.renderFundDrawdown()}
             </div>
             {this.renderPreview()}
           </div>

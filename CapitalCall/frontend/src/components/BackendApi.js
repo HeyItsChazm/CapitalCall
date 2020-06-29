@@ -7,7 +7,6 @@ const commitmentsApiUri = "api/commitments/";
 const fundInvestmentsApiUri = "api/fundinvestments/";
 
 const csrftoken = Cookie.get('csrftoken');
-console.log("CSRFTOKEN: " + csrftoken);
 const axiosConfig = {
   headers: {
     'X-CSRFTOKEN': csrftoken,
@@ -15,21 +14,19 @@ const axiosConfig = {
 };
 
 class BackendApi {
-  get_api_request = (address) => {
-    return (
-      axios
-        .get(address, axiosConfig)
-        .then(response => { return response.data})
-        .catch(err => console.log(err))
-    )
+  async get_api_request(address) {
+    let promise = axios
+      .get(address, axiosConfig)
+      .then(response => { return response.data})
+      .catch(err => console.log(err))
+    return await promise
   }
-  post_api_request = (address, content) => {
-    console.log("CONTENT FOR: " + address);
-    console.log(content);
-    axios
+  async post_api_request(address, content) {
+    let promise = axios
       .post(address, content, axiosConfig)
       .then(response => console.log(response))
       .catch(err => console.log(err))
+    return await promise
   }
   getApiFunds() {
     return this.get_api_request(fundsApiUri)

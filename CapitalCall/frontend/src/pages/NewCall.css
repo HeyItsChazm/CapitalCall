@@ -16,7 +16,6 @@
 
 .Newcall-input-date, .Newcall-input-rules, .Newcall-input-name, .Newcall-input-capital {
   display: grid;
-  margin: 5px;
   grid-template-columns: 60% 40%;
   text-align: right;
   margin: 10px;
@@ -114,10 +113,6 @@
 
 .row_Commitment_ID, .row_Fund_ID, .row_Date, .row_Fund {
   width: 10%;
-}
-
-
-.row_Commitment_ID, .row_Fund_ID, .row_Date, .row_Fund {
   text-align: center;
 }
 
@@ -129,4 +124,10 @@
 
 .row_Total_Drawdown_Notice, .row_Undrawn_Capital_Commitment_after_Current_Drawdown_Notice {
   background-color: #fce4d6;
+}
+
+.Newcall-fund-drawdown-table{
+  margin: 30px;
+  table-layout: fixed;
+  width: 420px;
 }
