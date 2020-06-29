@@ -1,11 +1,11 @@
 # Capital Call
 
-#### Server Dependencies
+### Server Dependencies
   - Pipenv
   - Python3
   - Node.js
 
-#### Install
+### Install
 
 CapitalCall/bin/install.bat
   - This will automatically install all the dependencies for the project (This is the same as using the 'npm install' and 'pipenv install' instructions below)
@@ -20,7 +20,7 @@ NPM Required Packages (can be installed with 'npm install' in the 'CapitalCall/C
   - react-router-dom
   - axios
 
-#### Initialisation
+### Initialisation
 
 Batch files are included in 'CapitalCall/bin' for ease of use:
   - run_frontend_http.bat
@@ -43,7 +43,7 @@ To start the Backend server:
   - Run 'python.exe ./manage.py runserver'
   - [OPTIONAL] Open up the browser of choice, and navigate to 'http://localhost:8000/api' to check that the backend is running.
 
-#### Usage
+### Usage
 
 Ensure the backend and frontend servers are running, and navigate to 'http://localhost:3000' if not done so already.
 You should be greeted by a welcome page with a large blue 'Capital Call' button in the center.
