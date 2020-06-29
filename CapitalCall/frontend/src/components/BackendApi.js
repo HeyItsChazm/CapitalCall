@@ -15,42 +15,40 @@ const axiosConfig = {
 
 class BackendApi {
   async get_api_request(address) {
-    let promise = axios
+    return await axios
       .get(address, axiosConfig)
       .then(response => { return response.data})
-      .catch(err => console.log(err))
-    return await promise
+      .catch(err => console.log(err));
   }
   async post_api_request(address, content) {
-    let promise = axios
+    return await axios
       .post(address, content, axiosConfig)
-      .then(response => console.log(response))
-      .catch(err => console.log(err))
-    return await promise
+      .then(response => { return response.data})
+      .catch(err => console.log(err));
   }
-  getApiFunds() {
-    return this.get_api_request(fundsApiUri)
+  async getApiFunds() {
+    return await this.get_api_request(fundsApiUri)
   }
-  getApiCalls() {
-    return this.get_api_request(callsApiUri)
+  async getApiCalls() {
+    return await this.get_api_request(callsApiUri)
   }
-  getApiCommitments() {
-    return this.get_api_request(commitmentsApiUri)
+  async getApiCommitments() {
+    return await this.get_api_request(commitmentsApiUri)
   }
-  getApiFundInvestments() {
-    return this.get_api_request(fundInvestmentsApiUri)
+  async getApiFundInvestments() {
+    return await this.get_api_request(fundInvestmentsApiUri)
   }
-  postApiFunds(funds) {
-    this.post_api_request(fundsApiUri, funds)
+  async postApiFunds(funds) {
+    return await this.post_api_request(fundsApiUri, funds)
   }
-  postApiCalls(calls) {
-    this.post_api_request(callsApiUri, calls)
+  async postApiCalls(calls) {
+    return await this.post_api_request(callsApiUri, calls)
   }
-  postApiCommitments(commitments) {
-    this.post_api_request(commitmentsApiUri, commitments)
+  async postApiCommitments(commitments) {
+    return await this.post_api_request(commitmentsApiUri, commitments)
   }
-  postApiFundInvestments(fundInvestments) {
-    this.post_api_request(fundInvestmentsApiUri, fundInvestments)
+  async postApiFundInvestments(fundInvestments) {
+    return await this.post_api_request(fundInvestmentsApiUri, fundInvestments)
   }
 }
 

@@ -38,7 +38,7 @@ const Rules = () => {
       </select>
     </div>
   )
-}
+};
 
 class NewCallPage extends Component {
   constructor(props) {
@@ -211,51 +211,61 @@ class NewCallPage extends Component {
     }
     this.data = rawData;
     this.sufficientCapital = remainingCapital === 0;
-    this.maxInvestment= maxInvestment;
+    this.maxInvestment = maxInvestment;
     return preview
   }
   saveCall() {
     let date = this.getInputDate();
-    if ( date === null ) { return }
-    let name = this.getInputInvestmentName();
-    if ( name === null ) { return }
+    if ( date === null ) {
+      return null;
+    };
+    let investmentName = this.getInputInvestmentName();
+    if ( investmentName === null ) {
+      return null;
+    };
     let investment = this.getInputCapital();
-    if ( investment === null ) { return }
+    if ( investment === null ) {
+      return null;
+    };
     let call_data = {
       date: date.toISOString().split('T')[0],
-      investment_name: name,
+      investment_name: investmentName,
       capital_requirement: investment,
-    }
-    backendApi.postApiCalls(call_data);
-    // Next highest id in calls.
-    let mostRecentID = Math.max.apply(Math, this.state.calls.map(
-      call => { return call.id }
-    )) + 1;
-    // Save Fund Investments
-    for (var index in this.data) {
-      let row = this.data[index];
-      let investment = row[headerTotalDrawdown];
-      if (investment > 0) {
-        backendApi.postApiFundInvestments({
-          call_id: mostRecentID,
-          commitment_id: row[headerCommitmentId],
-          fund_id: row[headerFundId],
-          investment_amount: row[headerTotalDrawdown],
+    };
+    // Post the new call to the database
+    backendApi.postApiCalls(call_data).then(() => {
+      // Refresh the calls list.
+      backendApi.getApiCalls().then((calls) => {
+        // Get the highest ID in the calls list (latest)
+        let mostRecentID = Math.max.apply(Math, calls.map(call => { return call.id }))
+        // Save Fund Investments
+        for (var index in this.data) {
+          let row = this.data[index];
+          let investment = row[headerTotalDrawdown];
+          if (investment > 0) {
+            backendApi.postApiFundInvestments({
+              call_id: mostRecentID,
+              commitment_id: row[headerCommitmentId],
+              fund_id: row[headerFundId],
+              investment_amount: row[headerTotalDrawdown],
+            });
+          };
+        };
+        // Refresh the fund investments list.
+        backendApi.getApiCalls().then((calls) => {
+          this.setState({ calls: calls, })
         });
-      };
-    }
-    // Refresh the calls list.
-    backendApi.getApiCalls().then((calls) => {
-      this.setState({ calls: calls, })
-    });
-    // Refresh the fund investments list.
-    backendApi.getApiFundInvestments().then((fundInvestments) => {
-      this.setState({ fundInvestments: fundInvestments, })
-    });
-    alert("Call #" + mostRecentID + " has been created.");
-    this.setInput(inputFieldDate, "");
-    this.setInput(inputFieldName, "");
-    this.setInput(inputFieldCapital, "");
+        // Refresh the fund investments list.
+        backendApi.getApiFundInvestments().then((fundInvestments) => {
+          this.setState({ fundInvestments: fundInvestments, })
+        });
+        // Alert the user of the completion and set the input fields to blank
+        alert("Call #" + mostRecentID + " has been created.");
+        this.setInput(inputFieldDate, "");
+        this.setInput(inputFieldName, "");
+        this.setInput(inputFieldCapital, "");
+      });
+    }).catch(err => console.log(err));
   }
   getFundDrawdown = () => {
     let fundsByDrawdown = {};
